@@ -9,6 +9,7 @@ optionGroups:
       - DISK_TYPE
       - DISK_IMAGE
       - MACHINE_TYPE
+      - INSTANCE_PREFIX
     name: "GCloud options"
   - options:
       - AGENT_PATH
@@ -106,6 +107,8 @@ options:
   TAG:
     description: A tag to attach to the instance.
     default: "devpod"
+  INSTANCE_PREFIX:
+    description: Optional prefix to add to instance names (e.g., your username).
   DISK_SIZE:
     description: The disk size to use (GB).
     default: "40"

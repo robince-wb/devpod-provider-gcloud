@@ -31,8 +31,11 @@ func FromEnv(withMachine, withFolder bool) (*Options, error) {
 		if err != nil {
 			return nil, err
 		}
-		// prefix with devpod-
-		retOptions.MachineID = "devpod-" + retOptions.MachineID
+		// Apply optional instance prefix
+		instancePrefix := os.Getenv("INSTANCE_PREFIX")
+		if instancePrefix != "" {
+			retOptions.MachineID = instancePrefix + "-" + retOptions.MachineID
+		}
 	}
 	if withFolder {
 		retOptions.MachineFolder, err = fromEnvOrError("MACHINE_FOLDER")

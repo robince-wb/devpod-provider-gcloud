@@ -44,12 +44,12 @@ This provides has the following options:
 |----------------|----------|----------------------------------------------------------------|------------------------------------------------------|
 | DISK_IMAGE     | false    | The disk image to use.                                         | projects/cos-cloud/global/images/cos-101-17162-127-5 |
 | DISK_SIZE      | false    | The disk size to use (GB).                                     | 40                                                   |
+| DISK_TYPE      | false    | The boot disk type to use.                                     | pd-balanced                                          |
 | MACHINE_TYPE   | false    | The machine type to use.                                       | c2-standard-4                                        |
 | PROJECT        | true     | The project id to use.                                         |                                                      |
 | ZONE           | true     | The google cloud zone to create the VM in. E.g. europe-west1-d |                                                      |
 | NETWORK        | false    | The network id to use.                                         |                                                      |
 | SUBNETWORK     | false    | The subnetwork id to use.                                      |                                                      |
 | TAG            | false    | A tag to attach to the instance.                               | devpod                                               |
-| SERVICE_ACCOUNT| false    | A service account to attach to instance
-
+| SERVICE_ACCOUNT| false    | A service account to attach to instance.                       |                                                      |
 

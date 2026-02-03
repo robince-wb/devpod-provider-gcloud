@@ -106,7 +106,7 @@ func buildInstance(options *options.Options) (*computepb.Instance, error) {
 				DeviceName: ptr.Ptr(options.MachineID),
 				InitializeParams: &computepb.AttachedDiskInitializeParams{
 					DiskSizeGb:  ptr.Ptr(int64(diskSize)),
-					DiskType:    ptr.Ptr(fmt.Sprintf("projects/%s/zones/%s/diskTypes/pd-balanced", options.Project, options.Zone)),
+					DiskType:    normalizeDiskType(options),
 					SourceImage: ptr.Ptr(options.DiskImage),
 				},
 			},
@@ -203,7 +203,23 @@ func normalizeSubnetworkID(options *options.Options) *string {
 	return ptr.Ptr(fmt.Sprintf("projects/%s/regions/%s/subnetworks/%s", project, region, sn))
 }
 
-var gpuInstancePattern *regexp.Regexp = regexp.MustCompile(`^[agn][0-9]`)
+func normalizeDiskType(options *options.Options) *string {
+	diskType := strings.TrimSpace(options.DiskType)
+	if diskType == "" {
+		diskType = "pd-balanced"
+	}
+
+	if diskTypePattern.MatchString(diskType) {
+		return ptr.Ptr(diskType)
+	}
+
+	return ptr.Ptr(fmt.Sprintf("projects/%s/zones/%s/diskTypes/%s", options.Project, options.Zone, diskType))
+}
+
+var (
+	diskTypePattern    = regexp.MustCompile(`projects/([^/]+)/zones/([^/]+)/diskTypes/([^/]+)`)
+	gpuInstancePattern = regexp.MustCompile(`^[agn][0-9]`)
+)
 
 func getMaintenancePolicy(machineType string) string {
 	if gpuInstancePattern.MatchString(machineType) {

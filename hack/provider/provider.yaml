@@ -6,6 +6,7 @@ icon: https://devpod.sh/assets/gcp.svg
 optionGroups:
   - options:
       - DISK_SIZE
+      - DISK_TYPE
       - DISK_IMAGE
       - MACHINE_TYPE
     name: "GCloud options"
@@ -108,6 +109,15 @@ options:
   DISK_SIZE:
     description: The disk size to use (GB).
     default: "40"
+  DISK_TYPE:
+    description: The boot disk type to use.
+    default: "pd-balanced"
+    suggestions:
+      - pd-standard
+      - pd-balanced
+      - pd-ssd
+      - pd-extreme
+      - hyperdisk-balanced
   DISK_IMAGE:
     description: The disk image to use.
     default: projects/cos-cloud/global/images/cos-101-17162-127-5

@@ -15,6 +15,7 @@ type Options struct {
 	Subnetwork     string
 	Tag            string
 	DiskSize       string
+	DiskType       string
 	DiskImage      string
 	MachineType    string
 	ServiceAccount string
@@ -49,6 +50,10 @@ func FromEnv(withMachine, withFolder bool) (*Options, error) {
 		return nil, err
 	}
 	retOptions.DiskSize, err = fromEnvOrError("DISK_SIZE")
+	if err != nil {
+		return nil, err
+	}
+	retOptions.DiskType, err = fromEnvOrError("DISK_TYPE")
 	if err != nil {
 		return nil, err
 	}

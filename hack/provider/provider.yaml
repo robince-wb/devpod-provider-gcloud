@@ -10,6 +10,7 @@ optionGroups:
       - DISK_IMAGE
       - MACHINE_TYPE
       - INSTANCE_PREFIX
+      - LABELS
     name: "GCloud options"
   - options:
       - AGENT_PATH
@@ -105,8 +106,10 @@ options:
   SUBNETWORK:
     description: The subnetwork id to use.
   TAG:
-    description: A tag to attach to the instance.
+    description: A network tag to attach to the instance (for firewall rules).
     default: "devpod"
+  LABELS:
+    description: "Key-value labels to attach to the instance (e.g., team=devops,env=dev)."
   INSTANCE_PREFIX:
     description: Optional prefix to add to instance names (e.g., your username).
   DISK_SIZE:

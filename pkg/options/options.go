@@ -14,6 +14,7 @@ type Options struct {
 	Network        string
 	Subnetwork     string
 	Tag            string
+	Labels         string
 	DiskSize       string
 	DiskType       string
 	DiskImage      string
@@ -80,6 +81,7 @@ func FromEnv(withMachine, withFolder bool) (*Options, error) {
 	retOptions.Network = os.Getenv("NETWORK")
 	retOptions.Subnetwork = os.Getenv("SUBNETWORK")
 	retOptions.Tag = os.Getenv("TAG")
+	retOptions.Labels = os.Getenv("LABELS")
 
 	return retOptions, nil
 }

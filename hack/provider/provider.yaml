@@ -11,6 +11,7 @@ optionGroups:
       - MACHINE_TYPE
       - INSTANCE_PREFIX
       - LABELS
+      - RESOURCE_MANAGER_TAGS
     name: "GCloud options"
   - options:
       - AGENT_PATH
@@ -110,6 +111,8 @@ options:
     default: "devpod"
   LABELS:
     description: "Key-value labels to attach to the instance (e.g., team=devops,env=dev)."
+  RESOURCE_MANAGER_TAGS:
+    description: "Resource Manager Tags to bind to the instance (e.g., tagKeys/123=tagValues/456)."
   INSTANCE_PREFIX:
     description: Optional prefix to add to instance names (e.g., your username).
   DISK_SIZE:

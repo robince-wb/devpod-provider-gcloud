@@ -13,9 +13,10 @@ type Options struct {
 	Zone           string
 	Network        string
 	Subnetwork     string
-	Tag            string
-	Labels         string
-	DiskSize       string
+	Tag                 string
+	Labels              string
+	ResourceManagerTags string
+	DiskSize            string
 	DiskType       string
 	DiskImage      string
 	MachineType    string
@@ -82,6 +83,7 @@ func FromEnv(withMachine, withFolder bool) (*Options, error) {
 	retOptions.Subnetwork = os.Getenv("SUBNETWORK")
 	retOptions.Tag = os.Getenv("TAG")
 	retOptions.Labels = os.Getenv("LABELS")
+	retOptions.ResourceManagerTags = os.Getenv("RESOURCE_MANAGER_TAGS")
 
 	return retOptions, nil
 }

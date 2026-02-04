@@ -113,6 +113,7 @@ func buildInstance(options *options.Options) (*computepb.Instance, error) {
 		},
 		Tags:   buildInstanceTags(options),
 		Labels: buildInstanceLabels(options),
+		Params: buildInstanceParams(options),
 		NetworkInterfaces: []*computepb.NetworkInterface{
 			{
 				Network:       normalizeNetworkID(options),
@@ -170,6 +171,31 @@ func buildInstanceLabels(options *options.Options) map[string]string {
 		return nil
 	}
 	return labels
+}
+
+func buildInstanceParams(options *options.Options) *computepb.InstanceParams {
+	if len(options.ResourceManagerTags) == 0 {
+		return nil
+	}
+
+	tags := make(map[string]string)
+	for _, pair := range strings.Split(options.ResourceManagerTags, ",") {
+		pair = strings.TrimSpace(pair)
+		if pair == "" {
+			continue
+		}
+		parts := strings.SplitN(pair, "=", 2)
+		if len(parts) == 2 {
+			tags[strings.TrimSpace(parts[0])] = strings.TrimSpace(parts[1])
+		}
+	}
+
+	if len(tags) == 0 {
+		return nil
+	}
+	return &computepb.InstanceParams{
+		ResourceManagerTags: tags,
+	}
 }
 
 func normalizeNetworkID(options *options.Options) *string {

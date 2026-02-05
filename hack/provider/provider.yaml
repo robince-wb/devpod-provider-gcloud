@@ -12,6 +12,7 @@ optionGroups:
       - INSTANCE_PREFIX
       - LABELS
       - RESOURCE_MANAGER_TAGS
+      - SERVICE_ACCOUNT
     name: "GCloud options"
   - options:
       - AGENT_PATH
@@ -131,8 +132,7 @@ options:
     description: The disk image to use.
     default: projects/cos-cloud/global/images/cos-101-17162-127-5
   SERVICE_ACCOUNT:
-    description: A service account to attach
-    default: ""
+    description: "Service account email to attach to the instance (e.g., my-sa@project.iam.gserviceaccount.com). Uses cloud-platform scope."
   PUBLIC_IP_ENABLED:
     description: Use a public ip to access the instance
     default: "true"
